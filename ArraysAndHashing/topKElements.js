@@ -46,3 +46,27 @@ let k2 = 2;
 
 // console.log(kEle(nums1, k1));
 console.log(kEle(nums3, k2));
+
+const KEle2 = (anotherNums, someK) => {
+    const count = {};
+    const freq = Array.from({ length: anotherNums + 1}, () => []);
+
+    for (const n of anotherNums) {
+        count[n] = (count[n] || 0) + 1;
+    };
+    for (const n in count) {
+        freq[count[n]].push(parseInt(n));
+    };
+
+    const res = [];
+    for (let i = freq.length; i > 0; i--) {
+        if (freq[i]) {
+            for (const n of freq[i]) {
+                res.push(n);
+                if (res.length === someK) {
+                    return res;
+                };
+            };
+        };
+    };
+};
