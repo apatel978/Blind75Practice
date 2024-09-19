@@ -23,11 +23,11 @@ const validP = (s) => {
         const isBracket = char in map;
         if (!isBracket) {
             stack.push(char);
-            console.log('not in map:', char)
+            // console.log('not in map:', char)
             continue;
         };
 
-        console.log('map[char]', map[char])
+        // console.log('map[char]', map[char])
 
         const isEqual = stack[stack.length - 1] === map[char];
         if (isEqual) {
@@ -49,6 +49,39 @@ let s3 = '[(])';
 let s4 = '[{}[]()[{}]]'
 
 console.log(validP(s1));
-// console.log(validP(s2));
-// console.log(validP(s3));
-// console.log(validP(s4));
+console.log(validP(s2));
+console.log(validP(s3));
+console.log(validP(s4));
+
+const validThing = (s) => {
+    let stack = [];
+    const mem = {
+        '}': '{',
+        ']': '[',
+        ')': '('
+    };
+
+    for (const char of s) {
+        const isClose = char in mem
+        if (!isClose) {
+            stack.push(char);
+            continue;
+        };
+
+        const isOpen = stack[stack.length - 1] === mem[char];
+        if (isOpen) {
+            stack.pop();
+            continue;
+        }
+
+        return false;
+    };
+
+    return stack.length === 0
+}
+
+
+console.log(validThing(s1));
+console.log(validThing(s2));
+console.log(validThing(s3));
+console.log(validThing(s4));
