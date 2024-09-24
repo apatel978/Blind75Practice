@@ -32,5 +32,28 @@ function dupeCheck(nums) {
 let arr = [1, 2, 3, 3];
 let arr2 = [1, 2, 3, 4]
 
-console.log(dupeCheck(arr));
-console.log(dupeCheck(arr2));
+// console.log(dupeCheck(arr));
+// console.log(dupeCheck(arr2));
+
+const checkDupe = (nums) => {
+    let obj = {};
+
+    for (let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+
+        if (obj[num] === undefined) {
+            obj[num] = 1;
+        } else {
+            obj[num]++;
+        };
+
+        if (obj[num] === 2) {
+            return true;
+        };
+    };
+
+    return false;
+};
+
+console.log(checkDupe(arr));
+console.log(checkDupe(arr2))

@@ -27,5 +27,40 @@ let s2 = 'carrace';
 let s3 = 'jam';
 let s4 = 'jar';
 
-console.log(anagram(s1, s2));
-console.log(anagram(s3, s4));
+// console.log(anagram(s1, s2));
+// console.log(anagram(s3, s4));
+
+const blind75Anagram = (s, t) => {
+    if (s.length !== t.length) return false;
+
+    let sObj = {};
+    let tObj = {};
+
+    for (let i = 0; i < s.length; i++) {
+        let Schar = s[i];
+        let tChar = t[i]
+
+        if (sObj[Schar] === undefined) {
+            sObj[Schar] = 1;
+        } else {
+            sObj[Schar]++;
+        };
+
+        if (tObj[tChar] === undefined) {
+            tObj[tChar] = 1;
+        } else {
+            tObj[tChar]++;
+        };
+    };
+
+    for (const key in sObj) {
+        if (sObj[key] !== tObj[key]) {
+            return false;
+        };
+    };
+
+    return true;
+};
+
+console.log(blind75Anagram(s1, s2));
+console.log(blind75Anagram(s3, s4));
